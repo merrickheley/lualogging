@@ -12,13 +12,13 @@
 
 <div id="product">
 	<div id="product_logo"><a href="http://www.keplerproject.org">
-    <img alt="Logotipo do LuaLogging" src="lualogging-128.png"/></a></div>
-	<div id="product_name"><big><b>LuaLogging</b></big></div>
+    <img alt="Logotipo do LuaLogging" src="../images/lualogging-128.png"/></a></div>
+	<div id="product_name"><big><strong>LuaLogging</strong></big></div>
 	<div id="product_description">Uma API simples para usar recursos de log em Lua</div>
 </div> <!-- id="product" -->
 
 <div id="main">
-	
+
 <div id="navigation">
 <h1>LuaLogging</h1>
 	<ul>
@@ -45,8 +45,13 @@
 				<li><a href="console.html">Console</a></li>
 				<li><a href="file.html">Arquivo</a></li>
 				<li><a href="sql.html">SQL</a></li>
-				<li><a href="socket.html">Soquete</a></li>
-				<li><strong>Email</strong></li>
+				<li><strong>Soquete</strong></li>
+				<li><a href="email.html">Email</a></li>
+			</ul>
+		</li>
+		<li><a href="https://github.com/Neopallium/lualogging">Project</a>
+			<ul>
+				<li><a href="https://github.com/Neopallium/lualogging/issues">Bug Tracker</a></li>
 			</ul>
 		</li>
 		<li><a href="license.html">Licen&ccedil;a</a></li>
@@ -55,51 +60,24 @@
 
 <div id="content">
 
-<h2>Appender de email</h2>
+<h2>Appender de <em>socket</em></h2>
 
-<p>Este appender pode ser usado para enviar solicita&ccedil;&otilde;es de log por email.
-Uma mensagem de email &eacute; enviada para cada solicita&ccedil;&atilde;o de log.</p>
+<p>Este appender pode ser usado para enviar solicita&ccedil;&otilde;es de log
+por um <em>socket</em>. O appender de <em>socket</em> depende do
+<a href="http://www.tecgraf.puc-rio.br/luasocket">LuaSocket</a>
+para ser executado.<br/> Depois de cada solicita&ccedil;&atilde;o de log,
+uma conex&atilde;o &eacute; aberta, a mensagem, enviada e a conex&atilde;o, fechada.</p>
 
 <pre class="example">
-function logging.email {
-    from = <i>string</i>,
-    rcpt = <i>string</i> or <i>string-table</i>,
-    [user = <i>string</i>,]
-    [password = <i>string</i>,]
-    [server = <i>string</i>,]
-    [port = <i>number</i>,]
-    [domain = <i>string</i>,]
-    [headers = <i>table</i>,]
-    [logPattern = <i>string</i>,]
-}
+function logging.socket(address, port [,logPattern])
 </pre>
 
 <ul>
-    <li><code>from</code>:<br /> O remetente da mensagem de email.</li>
+    <li><code>address</code>:<br /> O endere&ccedil;o pode ser um endere&ccedil;o IP
+    ou o nome de um host ao qual a mensagem de log ser&aacute; enviada.</li>
     
-    <li><code>rcpt</code>:<br /> O destinat&aacute;rio da mensagem de email. Uma string ou uma tabela Lua num&eacute;rica com v&aacute;rias strings.</li>
-    
-    <li><code>user</code>:<br /> O usu&aacute;rio para autentica&ccedil;&atilde;o.</li>
-    
-    <li><code>password</code>:<br /> A senha para autentica&ccedil;&atilde;o.</li>
-    
-    <li><code>server</code>:<br /> O servidor ao qual conectar.
-    O padr&atilde;o &eacute; <code>&quot;localhost&quot;</code>.</li>
-    
-    <li><code>port</code>:<br /> A porta &agrave; qual conectar.
-    O padr&atilde;o &eacute; <code>25</code>.</li>
-    
-    <li><code>domain</code>:<br /> O nome do dom&iacute;nio usado para acessar o servidor.
-    Usa como padr&atilde;o o nome do host do computador local.</li>
-    
-    <li><code>headers.to</code>:<br /> O destinat&aacute;rio da mensagem, como uma
-    descri&ccedil;&atilde;o extensa.</li>
-    
-    <li><code>headers.from</code>:<br /> O remetente da mensagem, como uma
-    descri&ccedil;&atilde;o extensa.</li>
-    
-    <li><code>headers.subject</code>:<br /> O assunto da mensagem enviada. Pode conter
-    padr&otilde;es como o par&acirc;metro <code>logPattern</code>.</li>
+    <li><code>port</code>:<br /> A porta deve ser um n&uacute;mero inteiro dentro do
+    intervalo [1..64K).</li>
     
     <li><code>logPattern</code>:<br /> &Eacute; poss&iacute;vel especificar um
     padr&atilde;o para controlar o modo como a mensagem &eacute; gravada.<br />
@@ -109,19 +87,13 @@ function logging.email {
 <h2>Exemplo</h2>
 
 <pre class="example">
-require&quot;logging.email&quot;
+require&quot;logging.socket&quot;
 
-local logger = logging.email {
-  rcpt = &quot;mail@host.com&quot;,
-  from = &quot;mail@host.com&quot;,
-  headers = { 
-    subject = &quot;[%level] logging.email test&quot;, 
-  },
-}
+local logger = logging.socket(&quot;localhost&quot;, 5000)
 
-logger:info(&quot;teste de logging.sql&quot;)
-logger:debug(&quot;depurando...&quot;)
-logger:error(&quot;erro!&quot;)
+logger:info(&quot;logging.socket test&quot;)
+logger:debug(&quot;debugging...&quot;)
+logger:error(&quot;error!&quot;)
 </pre>
 
 </div> <!-- id="content" -->
@@ -131,7 +103,6 @@ logger:error(&quot;erro!&quot;)
 <div id="about">
 	<p><a href="http://validator.w3.org/check?uri=referer">
     <img src="http://www.w3.org/Icons/valid-xhtml10" alt="XHTML 1.0 v&aacute;lido!" height="31" width="88" /></a></p>
-	<p><small>$Id: email.html,v 1.2 2005-11-17 21:27:18 tuler Exp $</small></p>
 </div> <!-- id="about" -->
 
 </div> <!-- id="container" -->

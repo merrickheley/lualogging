@@ -3,9 +3,8 @@
 --
 -- @author Thiago Costa Ponte (thiago@ideais.com.br)
 --
--- @copyright 2004-2007 Kepler Project
+-- @copyright 2004-2011 Kepler Project
 --
--- @release $Id: sql.lua,v 1.5 2008-01-17 16:25:46 carregal Exp $
 -------------------------------------------------------------------------------
 
 require"logging"
@@ -60,3 +59,6 @@ function logging.sql(params)
                         end
                       )
 end
+
+return logging.sql
+

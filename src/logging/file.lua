@@ -3,9 +3,8 @@
 --
 -- @author Thiago Costa Ponte (thiago@ideais.com.br)
 --
--- @copyright 2004-2007 Kepler Project
+-- @copyright 2004-2011 Kepler Project
 --
--- @release $Id: file.lua,v 1.7 2008-08-06 01:02:25 alessandrohc Exp $
 -------------------------------------------------------------------------------
 
 require"logging"
@@ -51,3 +50,6 @@ function logging.file(filename, datePattern, logPattern)
                         end
                       )
 end
+
+return logging.file
+
