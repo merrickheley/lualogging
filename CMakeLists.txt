@@ -10,16 +10,16 @@ include ( cmake/dist.cmake )
 include ( lua )
 
 # note path moves as in makefile
-install_lua_module ( logging src/logging/logging.lua )
-
+install_lua_module ( logging src/logging.lua )
 install_lua_module ( logging.console src/logging/console.lua )
-install_lua_module ( logging.emaiil src/logging/email.lua )
 install_lua_module ( logging.file src/logging/file.lua )
-install_lua_module ( logging.socket src/logging/socket.lua )
+install_lua_module ( logging.rolling_file src/logging/rolling_file.lua )
+install_lua_module ( logging.email src/logging/email.lua )
 install_lua_module ( logging.sql src/logging/sql.lua )
+install_lua_module ( logging.socket src/logging/socket.lua )
 install_data ( README )
 install_doc ( doc )
-install_test ( tests )
+install_test ( tests/ )
 
 add_lua_test ( tests/test.lua ${CMAKE_CURRENT_SOURCE_DIR}/tests )
 # FIX: paths
