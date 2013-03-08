@@ -10,6 +10,6 @@ url = "http://www.keplerproject.org/lualogging/"
 maintainer = "Peter Drahoš"
 
 depends = {
-	"lua ~> 5.1",
+	"lua >= 5.1",
 	"luasocket >= 2.0",
 }
