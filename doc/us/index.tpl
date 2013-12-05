@@ -15,7 +15,7 @@ as Lua 5.1. It is part of the <a href="http://www.keplerproject.org">Kepler Proj
 <h2><a name="status"></a>Status</h2>
 
 <p>
-Current version is 1.3.0. It was developed for Lua 5.1 & 5.2.
+Current version is 1.3.0ra. It was developed for Lua 5.1 & 5.2.
 </p>
 
 <h2><a name="download"></a>Download</h2>
@@ -50,11 +50,21 @@ LuaLogging can be downloaded from its
           <li><a href="http://www.keplerproject.org/luasql">LuaSQL 2.1.x</a></li>
         </ul>
     </dd>
+    
+    <dt><strong>Syslog appender</strong></dt>
+    <dd>
+        <ul>
+          <li><a href="https://github.com/luaposix/luaposix/">LuaPosix 5.1.23</a></li>
+        </ul>
+    </dd>
 </dl>
 
 <h2><a name="history"></a>History</h2>
 
 <dl class="history">
+    <dt><strong>1.3.0ra</strong> [5/Dec/2013]</dt>
+    <dd>Added Syslog Appender</dd>
+    
     <dt><strong>1.3.0</strong> [20/Apr/2011]</dt>
     <dd>Add support for Lua 5.2.</dd>
     <dd>Log change to log level.</dd>
